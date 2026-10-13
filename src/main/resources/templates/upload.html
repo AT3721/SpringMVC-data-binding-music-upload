@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Bài Hát</title>
+    <style>
+        .error { color: red; font-weight: bold; }
+        td { padding: 6px; }
+    </style>
+</head>
+<body>
+<h2>Upload Bài Hát Mới</h2>
+
+<!-- Hiển thị thông báo lỗi nếu chọn file không hợp lệ -->
+<div th:if="${errorMessage}" class="error">
+    <p th:text="${errorMessage}"></p>
+</div>
+
+<form th:action="@{/songs/save}" th:object="${songForm}" method="post" enctype="multipart/form-data">
+    <table>
+        <tr>
+            <td>Tên bài hát:</td>
+            <td><input type="text" th:field="*{name}" required /></td>
+        </tr>
+        <tr>
+            <td>Nghệ sĩ thể hiện:</td>
+            <td><input type="text" th:field="*{artist}" required /></td>
+        </tr>
+        <tr>
+            <td>Thể loại nhạc:</td>
+            <td><input type="text" th:field="*{genre}" placeholder="Pop, Rock, Ballad" required /></td>
+        </tr>
+        <tr>
+            <td>Chọn file bài hát (.mp3, .wav, .ogg, .m4p):</td>
+            <td><input type="file" th:field="*{songFile}" required /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit">Upload</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<br/>
+<a th:href="@{/songs}">Xem danh sách bài hát</a>
+</body>
+</html>

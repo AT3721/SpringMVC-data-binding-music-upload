@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách Bài Hát</title>
+</head>
+<body>
+<h2>Danh Sách Bài Hát Đã Upload</h2>
+
+<a th:href="@{/songs/upload}">+ Upload Bài Hát Mới</a>
+<br/><br/>
+
+<table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Tên Bài Hát</th>
+        <th>Nghệ Sĩ</th>
+        <th>Thể Loại</th>
+        <th>Tên File</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="song, iterStat : ${songs}">
+        <td th:text="${iterStat.count}">1</td>
+        <td th:text="${song.name}">Tên bài hát</td>
+        <td th:text="${song.artist}">Ca sĩ</td>
+        <td th:text="${song.genre}">Thể loại</td>
+        <td th:text="${song.filePath}">file.mp3</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
